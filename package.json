@@ -1,0 +1,20 @@
+{
+  "name": "AsTalenTuT",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "core-js": "^3.9.1",
+    "js-cookie": "^2.2.1",
+    "nuxt": "^2.15.3",
+    "vuex-persistedstate": "^2.5.4"
+  },
+  "devDependencies": {}
+}
