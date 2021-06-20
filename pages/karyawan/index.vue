@@ -18,13 +18,13 @@
                 </tr>
               </thead>
               <tbody>
-                  <tr v-for="(karyawan, index) in karyawans" :key="index">
-                    <td>{{ index + 1 }}</td>
-                    <td>{{ karyawan.name }}</td>
-                    <td>{{ karyawan.username }}</td>
-                    <td>{{ karyawan.email }}</td>
-                    <td>{{ customDateFormat(karyawan.created_at) }}</td>
-                  </tr>
+                <tr v-for="(karyawan, index) in karyawans" :key="index">
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ karyawan.name }}</td>
+                  <td>{{ karyawan.username }}</td>
+                  <td>{{ karyawan.email }}</td>
+                  <td>{{ customDateFormat(karyawan.created_at) }}</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -52,11 +52,13 @@ export default {
 
   methods: {
     async getKaryawan () {
+      this.$store.dispatch('setLoading', true)
       try {
         const karyawan = await this.$axios.$get('/user')
         if (karyawan) {
           this.karyawans = karyawan.message
         }
+        this.$store.dispatch('setLoading', false)
       } catch (error) {
         console.log(error)
       }

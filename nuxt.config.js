@@ -48,7 +48,9 @@ module.exports = {
     middleware: ['init']
   },
 
-  modules: [],
+  modules: [
+    ['cookie-universal-nuxt', { alias: 'cookiz' }]
+  ],
 
   build: {},
 

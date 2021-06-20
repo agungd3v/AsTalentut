@@ -61,7 +61,6 @@ export default {
         if (login.status) {
           this.$store.dispatch('setUser', login.message)
           this.$store.dispatch('setToken', login.token)
-          // this.$router.replace({ path: '/' })
           window.location.replace('/')
         }
       } catch (err) {

@@ -147,6 +147,8 @@
       </div>
     </header>
     <div class="pc-container">
+      <loader :class="loading ? '' : 'unset'" />
+      <div class="content-box"></div>
       <div class="pcoded-content">
         <nuxt />
       </div>
@@ -154,15 +156,21 @@
   </div>
 </template>
 <script>
+import loader from '../components/loader.vue'
 import { mapGetters } from 'vuex'
 export default {
   name: 'default',
+
+  components: {
+    loader
+  },
 
   middleware: 'auth',
 
   computed: {
     ...mapGetters({
-      'user': 'user'
+      'user': 'user',
+      'loading': 'loading'
     })
   },
 
@@ -180,3 +188,11 @@ export default {
   }
 }
 </script>
+<style lang="css" scoped>
+  .content-box {
+    width: 100%;
+    height: 50px;
+    background: #161c25;
+    position: absolute;
+  }
+</style>

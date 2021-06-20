@@ -1,8 +1,14 @@
 import { getCookies } from '../helpers/authentication'
-import * as Cookies from 'js-cookie'
 
 export default function (context) {
   let getCookie
+  const vuex = context.$cookiz.get('vuex')
+  if (vuex) {
+    if (vuex.token.identity.exp <= Date.now() / 1000) {
+      context.$cookiz.remove('vuex')
+      window.location.href = '/login'
+    }
+  }
   if (process.server) {
     let cookie = decodeURI(getCookies('vuex', context.req.headers.cookie))
     if (cookie) {
@@ -11,11 +17,6 @@ export default function (context) {
         return context.redirect('/login')
       }
       context.store.commit('setToken', getCookie.token)
-    }
-  } else {
-    let getCookie = Cookies.get('vuex')
-    if (!getCookie) {
-      return context.redirect('/login')
     }
   }
 }
